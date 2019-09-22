@@ -1,0 +1,14 @@
+.calendar-cell-content {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.calendar-cell-content:hover {
+  opacity: 0.6;
+}
+
+.calendar-cell-content-number {
+  justify-self: flex-start;
+}
