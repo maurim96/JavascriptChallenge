@@ -14,7 +14,6 @@
 .calendar-header {
   background-color: rgb(48, 116, 180);
   color: white;
-  font-weight: bold;
   text-align: center;
   width: 100%;
 }
@@ -22,7 +21,6 @@
 .calendar-cell {
   height: 100px;
   width: 170px;
-  font-weight: bold;
 }
 
 .disabled {

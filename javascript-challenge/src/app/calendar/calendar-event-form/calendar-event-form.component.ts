@@ -1,5 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { CalendarStoreService } from "src/app/core/stores/calendar-store.service";
+import { Reminder } from "src/app/models/Reminder";
+import * as moment from "moment";
+import Utils from "src/app/core/utils";
 
 @Component({
   selector: "app-calendar-event-form",
@@ -7,22 +11,73 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
   styleUrls: ["./calendar-event-form.component.css"]
 })
 export class CalendarEventFormComponent implements OnInit {
-  public eventForm: FormGroup;
-  constructor(private _fb: FormBuilder) {}
+  @Input() idReminder: number = 0;
+  @Input() selectedDate: Date = moment().toDate();
+  @Output() reminderSaved = new EventEmitter();
+  @Output() closeForm = new EventEmitter();
+  public isHigh = Utils.isHighCategory;
+  public isMedium = Utils.isMediumCategory;
+  public isLow = Utils.isLowCategory;
+  public reminderForm: FormGroup;
+  public reminder: Reminder;
+
+  get id() {
+    return this.reminderForm.get("id").value;
+  }
+  get text() {
+    return this.reminderForm.get("text").value;
+  }
+  get country() {
+    return this.reminderForm.get("country").value;
+  }
+  get category() {
+    return this.reminderForm.get("category").value;
+  }
+  get date() {
+    return this.reminderForm.get("date").value;
+  }
+
+  constructor(private _fb: FormBuilder, private calendarStore: CalendarStoreService) {}
 
   ngOnInit() {
-    this.eventForm = this.buildForm();
+    if (this.idReminder != 0) {
+      this.calendarStore.reminders$.subscribe(reminders => {
+        this.reminder = reminders.find(reminder => reminder.id == this.idReminder);
+        this.reminderForm = this.buildForm();
+      });
+    } else {
+      this.reminderForm = this.buildForm();
+    }
   }
 
   buildForm() {
     return this._fb.group({
-      id: [Math.floor(Math.random() * 99999), Validators.required],
-      title: ["", Validators.required],
-      content: [""],
-      category: [0, Validators.required],
-      date: [null, Validators.required]
+      id: [this.reminder ? this.reminder.id : Math.floor(Math.random() * 99999), Validators.required],
+      text: [this.reminder ? this.reminder.text : "", [Validators.required, Validators.maxLength(30)]],
+      country: [this.reminder ? this.reminder.country : ""],
+      category: [this.reminder ? this.reminder.category : 0, Validators.required],
+      date: [this.reminder ? this.reminder.date : this.selectedDate, Validators.required]
     });
   }
 
-  saveEvent() {}
+  saveReminder() {
+    const reminder: Reminder = {
+      id: this.id,
+      text: this.text,
+      country: this.country,
+      category: +this.category,
+      date: this.date
+    };
+
+    if (this.idReminder != 0) {
+      this.calendarStore.editReminder(reminder);
+    } else {
+      this.calendarStore.addReminder(reminder);
+    }
+    this.reminderSaved.emit();
+  }
+
+  exit() {
+    this.closeForm.emit();
+  }
 }

@@ -1,1 +1,2 @@
-<app-calendar-grid></app-calendar-grid> <app-calendar-event-form></app-calendar-event-form>
+<app-calendar-grid-parameterization (emitChanges)="dateChanged($event)"></app-calendar-grid-parameterization>
+<app-calendar-grid [selectedMonth]="selectedMonth" [selectedYear]="selectedYear"></app-calendar-grid>

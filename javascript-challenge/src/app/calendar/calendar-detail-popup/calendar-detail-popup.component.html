@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <h4 class="modal-title" *ngIf="type == 'Reminder form'">{{ type }}</h4>
+  <h4 class="modal-title" *ngIf="type == 'Date details'">{{ date | date: "mediumDate" }}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <app-calendar-date-details
+    *ngIf="type == 'Date details'"
+    [date]="date"
+    (showForm)="editReminder($event)"
+  ></app-calendar-date-details>
+  <app-calendar-event-form
+    *ngIf="type == 'Reminder form'"
+    [selectedDate]="date"
+    [idReminder]="selectedReminder"
+    (reminderSaved)="closeForm($event)"
+    (closeForm)="closeForm($event)"
+  ></app-calendar-event-form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-warning" (click)="deleteAllReminders()" *ngIf="type == 'Date details'">
+    Delete All
+  </button>
+  <button type="button" class="btn btn-primary" (click)="addReminder()" *ngIf="type == 'Date details'">
+    Add Reminder
+  </button>
+  <button type="button" class="btn btn-danger" (click)="activeModal.close('Close click')">Exit</button>
+</div>

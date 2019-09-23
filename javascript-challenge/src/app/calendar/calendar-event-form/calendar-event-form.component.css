@@ -1,0 +1,8 @@
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.btn-close {
+  margin-left: 10px;
+}

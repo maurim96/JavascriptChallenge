@@ -1,31 +1,40 @@
-import { Component, OnInit } from "@angular/core";
-import { CalendarStoreService } from "src/app/core/stores/calendar-store.service";
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from "@angular/core";
 import * as moment from "moment";
-import { WEEK_DAYS, MONTHS } from "./calendar-grid-config-data";
+import { WEEK_DAYS } from "../calendar-grid-config-data";
 import { CalendarService } from "src/app/core/services/calendar.service";
+import { CalendarStoreService } from "src/app/core/stores/calendar-store.service";
 
 @Component({
   selector: "app-calendar-grid",
   templateUrl: "./calendar-grid.component.html",
   styleUrls: ["./calendar-grid.component.css"]
 })
-export class CalendarGridComponent implements OnInit {
+export class CalendarGridComponent implements OnInit, OnChanges {
   public weekDays = WEEK_DAYS;
-  public months = MONTHS;
   public calendar = [];
-  public selectedMonth = 10;
-  public selectedYear = 2019;
+  @Input() selectedMonth = moment()
+    .toDate()
+    .getMonth();
+  @Input() selectedYear = moment()
+    .toDate()
+    .getFullYear();
 
-  constructor(private calendarService: CalendarService) {}
+  constructor(private calendarService: CalendarService, private calendarStore: CalendarStoreService) {}
 
   ngOnInit() {
+    this.calendarStore.reminders$.subscribe(reminders => {
+      this.updateCalendar();
+    });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
     this.updateCalendar();
   }
 
   updateCalendar() {
     this.calendar = this.calendarService.getCalendar(this.selectedYear, this.selectedMonth);
   }
-  
+
   checkMonth(date: Date) {
     let result = false;
     date.getMonth() != this.selectedMonth ? (result = true) : (result = false);

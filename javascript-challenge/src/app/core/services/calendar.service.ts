@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as moment from "moment";
+import { Reminder } from "src/app/models/Reminder";
 
 @Injectable({
   providedIn: "root"
@@ -72,5 +73,32 @@ export class CalendarService {
       calendar.push(weekRange);
     });
     return calendar;
+  }
+
+  getMockedReminders(): Reminder[] {
+    return this.createMockReminder();
+  }
+
+  private createMockReminder(): Reminder[] {
+    var reminder: Reminder = {
+      id: Math.floor(Math.random() * 99999),
+      text: "Sample of a reminder",
+      country: "Argentina",
+      category: 2,
+      date: moment().toDate()
+    };
+
+    var reminder2: Reminder = {
+      id: Math.floor(Math.random() * 99999),
+      text: "Second reminder",
+      country: "United States",
+      category: 1,
+      date: moment()
+        .add(3, "day")
+        .add(2, "hour")
+        .toDate()
+    };
+
+    return [reminder, reminder2];
   }
 }

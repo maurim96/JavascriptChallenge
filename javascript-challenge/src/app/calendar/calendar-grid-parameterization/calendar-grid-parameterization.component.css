@@ -1,0 +1,14 @@
+.form-container {
+  width: 500px;
+  margin: auto;
+  padding: 20px 0 20px 0;
+}
+.form-col {
+  display: flex;
+}
+.form-label {
+  display: flex;
+  align-self: center;
+  margin-right: 10px;
+  margin-bottom: 0;
+}

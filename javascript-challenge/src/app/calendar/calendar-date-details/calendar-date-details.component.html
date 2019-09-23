@@ -1,3 +1,23 @@
-<p>
-  calendar-date-details works!
-</p>
+<h5>List of Reminders:</h5>
+<ol class="reminder-list">
+  <li *ngFor="let reminder of reminders" class="reminder-list-item">
+    {{ reminder.text }} - <span class="reminder-list-item-action" (click)="editReminder(reminder.id)">Edit</span> |
+    <span class="reminder-list-item-action" (click)="deleteReminder(reminder.id)">Delete</span>
+    <ol style="list-style: outside">
+      <li>Time: {{ reminder.date | date: "shortTime" }}</li>
+      <li>Location: {{ reminder.country }}</li>
+      <li>
+        Category:
+        <span
+          [ngClass]="{
+            'category-high': isHigh(reminder.category),
+            'category-medium': isMedium(reminder.category),
+            'category-low': isLow(reminder.category)
+          }"
+        >
+          {{ checkReminderCategory(reminder.category) }}</span
+        >
+      </li>
+    </ol>
+  </li>
+</ol>

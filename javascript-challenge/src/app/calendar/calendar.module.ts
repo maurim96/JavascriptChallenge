@@ -8,6 +8,11 @@ import { CalendarStoreService } from "../core/stores/calendar-store.service";
 import { CalendarCellComponent } from "./calendar-cell/calendar-cell.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CalendarService } from "../core/services/calendar.service";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { CalendarDetailPopup } from "./calendar-detail-popup/calendar-detail-popup.component";
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
+import { CalendarGridParameterizationComponent } from "./calendar-grid-parameterization/calendar-grid-parameterization.component";
 
 @NgModule({
   declarations: [
@@ -15,10 +20,21 @@ import { CalendarService } from "../core/services/calendar.service";
     CalendarDateDetailsComponent,
     CalendarEventFormComponent,
     CalendarComponent,
-    CalendarCellComponent
+    CalendarCellComponent,
+    CalendarDetailPopup,
+    CalendarGridParameterizationComponent
   ],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    NgbModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule
+  ],
   exports: [CalendarComponent],
-  providers: [CalendarStoreService, CalendarService]
+  providers: [CalendarStoreService, CalendarService],
+  entryComponents: [CalendarDetailPopup]
 })
 export class CalendarModule {}
