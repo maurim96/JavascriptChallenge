@@ -2,7 +2,7 @@
   <span class="calendar-cell-content-number">{{ date | date: "dd" }}</span>
   <ol class="calendar-cell-reminders-list">
     <li
-      *ngFor="let reminder of currentDayReminders"
+      *ngFor="let reminder of currentDayReminders | slice: 0:3"
       class="calendar-cell-reminders-list-element"
       title="{{ reminder.text }}"
       [ngClass]="{
@@ -14,4 +14,5 @@
       {{ reminder.date | date: "shortTime" }} - {{ reminder.text }}
     </li>
   </ol>
+  <span class="calendar-cell-content-expand" *ngIf="currentDayReminders.length > 3">more...</span>
 </div>

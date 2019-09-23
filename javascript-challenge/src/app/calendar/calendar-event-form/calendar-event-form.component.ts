@@ -4,7 +4,7 @@ import { CalendarStoreService } from "src/app/core/stores/calendar-store.service
 import { Reminder } from "src/app/models/Reminder";
 import * as moment from "moment";
 import Utils from "src/app/core/utils";
-
+import { CITIES } from "../calendar-grid-config-data";
 @Component({
   selector: "app-calendar-event-form",
   templateUrl: "./calendar-event-form.component.html",
@@ -20,15 +20,15 @@ export class CalendarEventFormComponent implements OnInit {
   public isLow = Utils.isLowCategory;
   public reminderForm: FormGroup;
   public reminder: Reminder;
-
+  public cities = CITIES;
   get id() {
     return this.reminderForm.get("id").value;
   }
   get text() {
     return this.reminderForm.get("text").value;
   }
-  get country() {
-    return this.reminderForm.get("country").value;
+  get city() {
+    return this.reminderForm.get("city").value;
   }
   get category() {
     return this.reminderForm.get("category").value;
@@ -54,7 +54,7 @@ export class CalendarEventFormComponent implements OnInit {
     return this._fb.group({
       id: [this.reminder ? this.reminder.id : Math.floor(Math.random() * 99999), Validators.required],
       text: [this.reminder ? this.reminder.text : "", [Validators.required, Validators.maxLength(30)]],
-      country: [this.reminder ? this.reminder.country : ""],
+      city: [this.reminder ? this.reminder.city : 3435910],
       category: [this.reminder ? this.reminder.category : 0, Validators.required],
       date: [this.reminder ? this.reminder.date : this.selectedDate, Validators.required]
     });
@@ -64,11 +64,11 @@ export class CalendarEventFormComponent implements OnInit {
     const reminder: Reminder = {
       id: this.id,
       text: this.text,
-      country: this.country,
+      city: +this.city,
       category: +this.category,
       date: this.date
     };
-
+    
     if (this.idReminder != 0) {
       this.calendarStore.editReminder(reminder);
     } else {

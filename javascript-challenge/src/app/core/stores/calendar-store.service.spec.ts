@@ -18,7 +18,7 @@ fdescribe("CalendarStoreService", () => {
     var reminder: Reminder = {
       id: Math.floor(Math.random() * 99999),
       text: "Sample of a reminder",
-      country: "Argentina",
+      city: 3435910,
       category: 2,
       date: moment().toDate()
     };

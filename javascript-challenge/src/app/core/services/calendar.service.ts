@@ -83,7 +83,7 @@ export class CalendarService {
     var reminder: Reminder = {
       id: Math.floor(Math.random() * 99999),
       text: "Sample of a reminder",
-      country: "Argentina",
+      city: 3435910,
       category: 2,
       date: moment().toDate()
     };
@@ -91,7 +91,7 @@ export class CalendarService {
     var reminder2: Reminder = {
       id: Math.floor(Math.random() * 99999),
       text: "Second reminder",
-      country: "United States",
+      city: 3838583,
       category: 1,
       date: moment()
         .add(3, "day")

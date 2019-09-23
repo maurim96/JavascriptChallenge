@@ -1,4 +1,5 @@
 import * as moment from "moment";
+import { CITIES } from "../calendar/calendar-grid-config-data";
 
 export default class Utils {
   static compareYear(firstDate, secondDate): Boolean {
@@ -64,5 +65,14 @@ export default class Utils {
 
   static isLowCategory(idCategory) {
     return idCategory == 0 ? true : false;
+  }
+
+  static checkCityName(cityId) {
+    var city = CITIES.find(city => city.id == cityId);
+    return city != undefined ? city["text"] : null;
+  }
+
+  static getCelsiusTemp(tempInKelvin) {
+    return Math.round(tempInKelvin - 273.15);
   }
 }

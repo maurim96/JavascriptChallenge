@@ -49,3 +49,14 @@ export const MONTHS = [
     text: "December"
   }
 ];
+
+export const CITIES = [
+  {
+    id: 3435910,
+    text: "Buenos Aires"
+  },
+  {
+    id: 3838583,
+    text: "Rosario"
+  }
+];

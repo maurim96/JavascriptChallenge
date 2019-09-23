@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { Reminder } from "src/app/models/Reminder";
 import { CalendarService } from "../services/calendar.service";
-import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 import Utils from "../utils";
 
 @Injectable({

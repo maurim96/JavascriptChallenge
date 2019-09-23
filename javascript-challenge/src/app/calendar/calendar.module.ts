@@ -13,6 +13,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { CalendarDetailPopup } from "./calendar-detail-popup/calendar-detail-popup.component";
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
 import { CalendarGridParameterizationComponent } from "./calendar-grid-parameterization/calendar-grid-parameterization.component";
+import { WeatherService } from '../core/services/weather.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,10 +33,11 @@ import { CalendarGridParameterizationComponent } from "./calendar-grid-parameter
     BrowserAnimationsModule,
     NgbModule,
     OwlDateTimeModule,
-    OwlNativeDateTimeModule
+    OwlNativeDateTimeModule,
+    HttpClientModule
   ],
   exports: [CalendarComponent],
-  providers: [CalendarStoreService, CalendarService],
+  providers: [CalendarStoreService, CalendarService, WeatherService],
   entryComponents: [CalendarDetailPopup]
 })
 export class CalendarModule {}

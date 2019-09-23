@@ -13,6 +13,7 @@ export class CalendarComponent implements OnInit {
   selectedYear: number = moment()
     .toDate()
     .getFullYear();
+
   constructor() {}
 
   ngOnInit() {}

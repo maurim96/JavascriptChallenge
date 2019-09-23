@@ -1,7 +1,7 @@
 export class Reminder {
   id: number;
   text: string;
-  country?: string;
+  city: number;
   category: number;
   date: Date;
 }

@@ -12,11 +12,13 @@
 .calendar-cell-content-number {
   justify-self: flex-start;
   font-weight: bold;
+  padding-right: 5px;
 }
 
 .calendar-cell-reminders-list {
   align-self: center;
   padding: 0;
+  width: 105px;
 }
 
 .calendar-cell-reminders-list-element {
@@ -26,4 +28,10 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 140px;
+}
+
+.calendar-cell-content-expand {
+  justify-self: flex-end;
+  font-size: 10px;
+  align-self: flex-end;
 }

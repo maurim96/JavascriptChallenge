@@ -21,6 +21,7 @@
 .calendar-cell {
   height: 100px;
   width: 170px;
+  max-width: 170px;
 }
 
 .disabled {

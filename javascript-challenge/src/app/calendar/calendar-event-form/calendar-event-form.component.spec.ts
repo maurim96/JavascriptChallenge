@@ -39,7 +39,7 @@ fdescribe("CalendarEventFormComponent", () => {
     component.reminderForm = component.buildForm();
     component.reminderForm.controls["text"].setValue("Sample of reminder");
     component.reminderForm.controls["category"].setValue(0);
-    component.reminderForm.controls["country"].setValue("Argentina");
+    component.reminderForm.controls["city"].setValue(3435910);
     component.reminderForm.controls["id"].setValue(Math.floor(Math.random() * 99999));
     component.reminderForm.controls["date"].setValue(moment().toDate());
     expect(component.reminderForm.valid).toBeTruthy();
@@ -51,7 +51,7 @@ fdescribe("CalendarEventFormComponent", () => {
       "Sample of reminder with more than 30 caract, that should be invalid obviously"
     );
     component.reminderForm.controls["category"].setValue(0);
-    component.reminderForm.controls["country"].setValue("Argentina");
+    component.reminderForm.controls["city"].setValue(3435910);
     component.reminderForm.controls["id"].setValue(Math.floor(Math.random() * 99999));
     component.reminderForm.controls["date"].setValue(moment().toDate());
     expect(component.reminderForm.valid).toBeFalsy();

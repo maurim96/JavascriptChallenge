@@ -8,8 +8,10 @@
     <input class="form-control" type="text" formControlName="text" maxlength="30" />
   </div>
   <div class="form-group">
-    <label for="country">Country</label>
-    <input class="form-control" type="text" formControlName="country" />
+    <label for="city">City</label>
+    <select class="form-control" name="city" id="city" formControlName="city">
+      <option *ngFor="let city of cities" value="{{ city.id }}">{{ city.text }}</option>
+    </select>
   </div>
   <div class="form-group">
     <label for="category">Category</label>
@@ -42,7 +44,9 @@
     <owl-date-time #dt1></owl-date-time>
   </div>
   <div class="buttons-container">
-    <button type="button" class="btn btn-success" (click)="saveReminder()" [disabled]="!reminderForm.valid">Save</button>
+    <button type="button" class="btn btn-success" (click)="saveReminder()" [disabled]="!reminderForm.valid">
+      Save
+    </button>
     <button type="button" class="btn btn-outline-dark  btn-close" (click)="exit()">Close</button>
   </div>
 </form>

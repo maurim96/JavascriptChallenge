@@ -4,7 +4,9 @@ import { Reminder } from "src/app/models/Reminder";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { CalendarDetailPopup } from "../calendar-detail-popup/calendar-detail-popup.component";
 import Utils from "src/app/core/utils";
+import * as moment from "moment";
 
+const MAX_ELEMENTS = 3;
 @Component({
   selector: "app-calendar-cell",
   templateUrl: "./calendar-cell.component.html",
@@ -20,7 +22,11 @@ export class CalendarCellComponent implements OnInit {
 
   ngOnInit() {
     this.calendarStore.reminders$.subscribe(reminders => {
-      this.currentDayReminders = reminders.filter(reminder => Utils.compareDate(reminder.date, this.date));
+      this.currentDayReminders = reminders
+        .filter(reminder => Utils.compareDate(reminder.date, this.date))
+        .sort((a, b) => {
+          return moment(a.date).valueOf() - moment(b.date).valueOf();
+        });
     });
   }
 
