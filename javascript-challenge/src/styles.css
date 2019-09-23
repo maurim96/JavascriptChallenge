@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+
+.cdk-overlay-container {
+  z-index: 9999;
+}
+
+.category-high {
+  color: red;
+}
+
+.category-medium {
+  color: orange;
+}
+
+.category-low {
+  color: green;
+}

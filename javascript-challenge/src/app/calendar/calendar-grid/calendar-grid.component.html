@@ -1,0 +1,16 @@
+<table class="calendar">
+  <thead class="calendar-header">
+    <tr>
+      <th *ngFor="let day of weekDays">
+        {{ day }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of calendar">
+      <td *ngFor="let cell of row" [ngClass]="{ disabled: checkMonth(cell) }" class="calendar-cell">
+        <app-calendar-cell [date]="cell"></app-calendar-cell>
+      </td>
+    </tr>
+  </tbody>
+</table>

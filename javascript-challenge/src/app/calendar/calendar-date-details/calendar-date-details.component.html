@@ -1,0 +1,34 @@
+<h5 class="modal-subtitle">List of Reminders:</h5>
+<ol class="reminder-list">
+  <li *ngFor="let reminder of reminders; index as i" class="reminder-list-item">
+    {{ reminder.text }} - <span class="reminder-list-item-action" (click)="editReminder(reminder.id)">Edit</span> |
+    <span class="reminder-list-item-action" (click)="deleteReminder(reminder.id)">Delete</span>
+    <ol style="list-style: outside">
+      <li>Time: {{ reminder.date | date: "shortTime" }}</li>
+      <li>Location: {{ checkCityName(reminder.city) }}</li>
+      <li>
+        Category:
+        <span
+          [ngClass]="{
+            'category-high': isHigh(reminder.category),
+            'category-medium': isMedium(reminder.category),
+            'category-low': isLow(reminder.category)
+          }"
+        >
+          {{ checkReminderCategory(reminder.category) }}</span
+        >
+      </li>
+      <li>
+        Weater:
+        <span
+          class="reminder-list-item-action"
+          *ngIf="weathers[i] == undefined"
+          (click)="checkWeather(reminder.city, i)"
+          >check weather</span
+        ><span *ngIf="weathers[i] != undefined"
+          >{{ getCelsiusTemp(weathers[i].main.temp) }}°C / {{ weathers[i].main.humidity }}% humidity</span
+        >
+      </li>
+    </ol>
+  </li>
+</ol>

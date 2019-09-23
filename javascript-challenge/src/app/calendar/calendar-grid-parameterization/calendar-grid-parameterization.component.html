@@ -1,0 +1,16 @@
+<form [formGroup]="parameterizationForm">
+  <div class="row form-container">
+    <div class="col form-col">
+      <label for="year" class="form-label">Year:</label>
+      <select class="form-control" name="year" id="year" formControlName="year">
+        <option value="2019">2019</option>
+      </select>
+    </div>
+    <div class="col form-col">
+      <label for="month" class="form-label">Month:</label>
+      <select class="form-control" name="month" id="month" formControlName="month">
+        <option *ngFor="let month of months" value="{{ month.value }}">{{ month.text }}</option>
+      </select>
+    </div>
+  </div>
+</form>

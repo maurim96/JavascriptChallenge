@@ -1,0 +1,32 @@
+.calendar {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1200px;
+}
+
+.calendar,
+.calendar-cell {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+.calendar-header {
+  background-color: rgb(48, 116, 180);
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+
+.calendar-cell {
+  height: 100px;
+  width: 170px;
+  max-width: 170px;
+}
+
+.disabled {
+  color: gray;
+  opacity: .5;
+  pointer-events: none;
+  
+}

@@ -1,0 +1,62 @@
+export const WEEK_DAYS: string[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+export const MONTHS = [
+  {
+    value: 0,
+    text: "February"
+  },
+  {
+    value: 1,
+    text: "January"
+  },
+  {
+    value: 2,
+    text: "March"
+  },
+  {
+    value: 3,
+    text: "April"
+  },
+  {
+    value: 4,
+    text: "May"
+  },
+  {
+    value: 5,
+    text: "June"
+  },
+  {
+    value: 6,
+    text: "July"
+  },
+  {
+    value: 7,
+    text: "August"
+  },
+  {
+    value: 8,
+    text: "September"
+  },
+  {
+    value: 9,
+    text: "October"
+  },
+  {
+    value: 10,
+    text: "November"
+  },
+  {
+    value: 11,
+    text: "December"
+  }
+];
+
+export const CITIES = [
+  {
+    id: 3435910,
+    text: "Buenos Aires"
+  },
+  {
+    id: 3838583,
+    text: "Rosario"
+  }
+];
